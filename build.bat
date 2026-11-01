@@ -3,12 +3,12 @@ chcp 65001 >nul
 set PYTHONIOENCODING=utf-8
 cd /d "%~dp0"
 
-echo Installing requirements...
+echo === [1/3] Installing requirements ===
 pip install customtkinter pyperclip pillow pyinstaller
 echo.
 
-echo Building icon (from the app's own logo)...
-python language_switcher.py --make-icon
+echo === [2/3] Generating icon from the app logo ===
+python layout_switcher.py --make-icon
 echo.
 
 rem The old exe may be locked if the app is running; retry deleting it.
@@ -28,8 +28,8 @@ pause
 exit /b 1
 
 :build
-echo Building exe...
-pyinstaller --noconfirm --clean --onefile --noconsole --name LayoutSwitcher --icon icon.ico --collect-all customtkinter language_switcher.py
+echo === [3/3] Building exe ===
+pyinstaller --noconfirm --clean --onefile --noconsole --name LayoutSwitcher --icon assets\icon.ico --collect-all customtkinter layout_switcher.py
 echo.
-echo Done. Your file: dist\LayoutSwitcher.exe
+echo Done!  -^>  dist\LayoutSwitcher.exe
 pause

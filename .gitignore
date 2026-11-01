@@ -1,1 +1,21 @@
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ---------- PyInstaller ----------
+build/
+*.spec
+
+# ---------- Editors / OS ----------
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+
+# ---------- Misc ----------
+# صفحه‌ی معرفی (خارج از محدوده‌ی برنامه)
 /LayoutSwitcher.html

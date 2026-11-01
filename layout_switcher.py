@@ -1,8 +1,8 @@
 """
 تبدیل متن تایپ‌شده با کیبورد اشتباه  (LayoutSwitcher) - نسخه‌ی ۳ با ظاهر جدید
 نصب:  pip install customtkinter pyperclip pillow
-اجرا:  python language_switcher.py
-ساخت آیکون:  python language_switcher.py --make-icon
+اجرا:  python layout_switcher.py
+ساخت آیکون:  python layout_switcher.py --make-icon
 """
 import ctypes
 import ctypes.wintypes as wt
@@ -645,10 +645,16 @@ class App:
 if __name__ == "__main__":
     if "--make-icon" in sys.argv:
         here = os.path.dirname(os.path.abspath(__file__))
-        make_logo(256).save(os.path.join(here, "icon.ico"),
+        out = os.path.join(here, "assets")
+        os.makedirs(out, exist_ok=True)
+        make_logo(256).save(os.path.join(out, "icon.ico"),
                             sizes=[(256, 256), (128, 128), (64, 64), (48, 48), (32, 32), (16, 16)])
-        make_logo(512).save(os.path.join(here, "logo.png"))
-        print("icon.ico و logo.png ساخته شد.")
+        make_logo(512).save(os.path.join(out, "logo.png"))
+        try:
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+        print("assets/icon.ico و assets/logo.png ساخته شد.")
         sys.exit()
     _mutex = kernel32.CreateMutexW(None, False, "LayoutSwitcher_SingleInstance")
     if kernel32.GetLastError() == 183:
