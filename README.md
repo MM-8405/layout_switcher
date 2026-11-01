@@ -8,7 +8,7 @@
 
 فارسی ⇄ انگلیسی، بدون کپی‌کردن دستی و بدون بازکردن برنامه.
 
-[**⬇️ دانلود آخرین نسخه (LayoutSwitcher.exe)**](../../raw/main/dist/LayoutSwitcher.exe)
+[**⬇️ دانلود آخرین نسخه (LayoutSwitcher.exe)**](https://github.com/MM-8405/layout_switcher/raw/main/dist/LayoutSwitcher.exe)
 
 </div>
 
