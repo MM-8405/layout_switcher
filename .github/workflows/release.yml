@@ -1,0 +1,63 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to build (e.g. v1.0.1). Leave empty to build only."
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build Windows executable
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install customtkinter pyperclip pillow pyinstaller
+
+      - name: Generate icon from app logo
+        run: python layout_switcher.py --make-icon
+
+      - name: Build executable
+        run: >
+          pyinstaller --noconfirm --clean --onefile --noconsole
+          --name LayoutSwitcher --icon assets/icon.ico
+          --collect-all customtkinter layout_switcher.py
+
+      - name: Verify output
+        run: |
+          if (!(Test-Path "dist/LayoutSwitcher.exe")) { throw "exe not found" }
+          Get-Item "dist/LayoutSwitcher.exe" | Select-Object Name, Length
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LayoutSwitcher
+          path: dist/LayoutSwitcher.exe
+          if-no-files-found: error
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/LayoutSwitcher.exe
+          generate_release_notes: true
+          fail_on_unmatched_files: true
