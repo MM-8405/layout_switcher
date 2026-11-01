@@ -135,7 +135,7 @@ build.bat
 یا به‌صورت دستی:
 
 ```bat
-pip install customtkinter pyperclip pillow pyinstaller
+pip install -r requirements.txt pyinstaller
 python layout_switcher.py --make-icon
 pyinstaller --noconfirm --clean --onefile --noconsole --name LayoutSwitcher ^
   --icon assets\icon.ico --collect-all customtkinter layout_switcher.py
@@ -144,7 +144,7 @@ pyinstaller --noconfirm --clean --onefile --noconsole --name LayoutSwitcher ^
 اجرای مستقیم بدون بیلد:
 
 ```bat
-pip install customtkinter pyperclip pillow
+pip install -r requirements.txt
 python layout_switcher.py
 ```
 
@@ -163,6 +163,7 @@ layout_switcher/
 │  └─ screenshot-light.png     ← تصویر پوسته‌ی روشن
 ├─ .github/workflows/
 │  └─ release.yml              ← بیلد و انتشار خودکار
+├─ requirements.txt            ← وابستگی‌ها
 ├─ CHANGELOG.md
 ├─ LICENSE
 └─ README.md
@@ -199,7 +200,7 @@ Issue و Pull Request خوش‌آمد است. برای تغییرات بزرگ�
 ```bat
 git clone https://github.com/MM-8405/layout_switcher.git
 cd layout_switcher
-pip install customtkinter pyperclip pillow
+pip install -r requirements.txt
 python layout_switcher.py
 ```
 

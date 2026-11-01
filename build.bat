@@ -4,7 +4,8 @@ set PYTHONIOENCODING=utf-8
 cd /d "%~dp0"
 
 echo === [1/3] Installing requirements ===
-pip install customtkinter pyperclip pillow pyinstaller
+pip install -r requirements.txt
+pip install pyinstaller
 echo.
 
 echo === [2/3] Generating icon from the app logo ===

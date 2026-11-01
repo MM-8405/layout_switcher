@@ -31,7 +31,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install customtkinter pyperclip pillow pyinstaller
+          pip install -r requirements.txt
+          pip install pyinstaller
 
       - name: Generate icon from app logo
         run: python layout_switcher.py --make-icon
